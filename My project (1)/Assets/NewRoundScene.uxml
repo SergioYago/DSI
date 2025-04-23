@@ -1,0 +1,13 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="Global" style="flex-grow: 1; justify-content: flex-start; background-color: rgb(136, 201, 102);">
+        <engine:VisualElement name="Top" style="flex-grow: 1; justify-content: space-between; height: 25%;">
+            <engine:Label text="Passing The Irregular Dungeon" name="Title" style="font-size: 75px; -unity-font-style: bold; color: rgb(255, 255, 255);" />
+        </engine:VisualElement>
+        <engine:VisualElement name="Mid" style="flex-grow: 1; height: 25%;">
+            <engine:Button text="START" style="height: 100%; background-color: rgb(242, 107, 107); font-size: 40px; -unity-font-style: bold;" />
+        </engine:VisualElement>
+        <engine:VisualElement name="Bot" style="flex-grow: 1; height: 75%;">
+            <Lab4_2 />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
