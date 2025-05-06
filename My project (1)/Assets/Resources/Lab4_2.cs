@@ -25,6 +25,7 @@ public class Lab4_2 : VisualElement
         Debug.Log("anda");
     estado = i;
     }
+    public int getHealth() { return estado; }
     public void addHealth(int i ) {estado+=i;}
     void changeEstado() 
     {
