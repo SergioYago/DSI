@@ -24,9 +24,18 @@ public class Lab4_2 : VisualElement
     {
         Debug.Log("anda");
     estado = i;
+        changeEstado();
     }
     public int getHealth() { return estado; }
-    public void addHealth(int i ) {estado+=i;}
+    public void addHealth(int i)
+    {
+        estado += i; changeEstado(); if (estado > 4) { estado = 4; }
+        if (estado < 0)
+        {
+            estado = 0; 
+        }
+        Debug.Log(estado);
+    }
     void changeEstado() 
     {
         Sprite spr = Resources.Load<Sprite>("heart");

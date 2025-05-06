@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
@@ -35,95 +36,89 @@ public class HealthControler : MonoBehaviour
         ResetButtons();
 
     }
-    private void ResetCallbacks(ref VisualElement e, int n) 
+    private void ResetCallbacks(ref VisualElement e) 
     {
-        if (n == -1)
-        {
-            e.UnregisterCallback<MouseDownEvent>(evt =>
-            {
-
-                health.addHealth(-1);
-            }, TrickleDown.NoTrickleDown);
-        }
-        else if(n==1)
-        {
-            e.UnregisterCallback<MouseDownEvent>(evt =>
-            {
-
-                health.addHealth(1);
-            }, TrickleDown.NoTrickleDown);
-        }
+        e.UnregisterCallback<ClickEvent,int>(ChangeEffectDoor);
     }
     private void ResetButtons()
     {
-        ResetCallbacks(ref puerta1, door1);
+        ResetCallbacks(ref puerta1);
+        ResetCallbacks(ref puerta2);
+        ResetCallbacks(ref puerta3);
+        SetDoorEffects();
     }
     void comprobaciones() 
     {
         if (health.getHealth() > 0&&nSala<5)
         {
-
+            
+            nSala++;
         }
         else if(health.getHealth() < 0 )
         {
-        //pierdes
+            Debug.Log("Perdiste");
         }
         else 
         {
-        //ganas
+            Debug.Log("ganeste");
         }
+        ResetButtons();
     }
-    // Update is called once per frame
     //puede haber 5 casos distintos
     //creamos funcion que saque numero random, cremos funcion que añada el MouseDownEnvent
     //a la funcion se le pasará el visualElement y un número. El número se pondrá en changeHealth 
     void SetDoorEffects() 
     {
-        int rnd =Random.Range(0,6);
+        int rnd =UnityEngine.Random.Range(0,6);
         if (rnd == 0) 
         {
-            SetEvent(ref puerta1, 1);
-            SetEvent(ref puerta2, 0);
-            SetEvent(ref puerta3, -1);
+            door1 = 1;
+            door2 = 0;
+            door3=-1;
+            
         }
-        if (rnd == 1) 
+       else if (rnd == 1) 
         {
-            SetEvent(ref puerta1, 1);
-            SetEvent(ref puerta2, -1);
-            SetEvent(ref puerta3, 0);
+            door1 = 1;
+            door2 = -1;
+            door3 = 0;
+            
         }
-        if (rnd == 2) 
+      else  if (rnd == 2) 
         {
-            SetEvent(ref puerta1, -1);
-            SetEvent(ref puerta3, 1);
-            SetEvent(ref puerta2, 0);
+            door1 = -1;
+            door2 = 0;
+            door3 = 1;
+            
         }
-        if (rnd == 3) 
+       else if (rnd == 3) 
         {
-            SetEvent(ref puerta1, -1);
-            SetEvent(ref puerta2, 1);
-            SetEvent(ref puerta3, 0);
+            door1 = -1;
+            door2 = 1;
+            door3 = 0;
+            
         }
-        if (rnd == 4) 
+       else if (rnd == 4) 
         {
-            SetEvent(ref puerta2, 1);
-            SetEvent(ref puerta3, -1);
-            SetEvent(ref puerta1, 0);
+            door1 = 0;
+            door2 = 1;
+            door3 = -1;
+            
         }
-        if (rnd == 5) 
+      else  if (rnd == 5) 
         {
-            SetEvent(ref puerta2, -1);
-            SetEvent(ref puerta3, 1);
-            SetEvent(ref puerta1, 0);
+            door1 = 0;
+            door2 = -1;
+            door3 = 1;
+            
         }
+        SetEvent(ref puerta1, door1);
+        SetEvent(ref puerta2, door2);
+        SetEvent(ref puerta3, door3);
     }
     void SetEvent(ref VisualElement e, int n)
     {
-        e.RegisterCallback<MouseDownEvent>(evt =>
-        {
-            health.addHealth(n);
-            comprobaciones();
-        });
+        e.RegisterCallback<ClickEvent,int>(ChangeEffectDoor,n);
     }
     private void OnEnable()
     {
@@ -131,36 +126,22 @@ public class HealthControler : MonoBehaviour
         UIDocument uidoc = GetComponent<UIDocument>();
         VisualElement rootve = uidoc.rootVisualElement;
         VisualElement bot = rootve.Q("Bot");
-        Debug.Log(bot);
+        VisualElement mid = rootve.Q("Mid");
         //Label texto = rootve.Q<Label>("Title");
-        health =(Lab4_2)bot.Q("Lab4_2");
-        Debug.Log(health);
-        puerta1 = rootve.Q("Mid");
-        Debug.Log(puerta1);
-        puerta1.RegisterCallback<MouseDownEvent>(evt => 
-        {
+        health =(Lab4_2)bot.Q("Script");
 
-        health.addHealth(1);
-        });
+        puerta1 = mid.Q("Door1");
+        puerta2 = mid.Q("Door2");
+        puerta3 = mid.Q("Door3");
+        Debug.Log(puerta1);
+        SetDoorEffects();
+       
         
-        /*
-        ventana_amarillo.RegisterCallback<MouseDownEvent>(evt =>
-        {
-            Debug.Log("ventana amarilla.");
-            NoContent();
-            contenido_amarillo.style.display = DisplayStyle.Flex;
-        });
-        ventana_rojo.RegisterCallback<MouseDownEvent>(evt =>
-        {
-            Debug.Log("ventana roja.");
-            NoContent();
-            contenido_rojo.style.display = DisplayStyle.Flex;
-        });
-        ventana_naranja.RegisterCallback<MouseDownEvent>(evt =>
-        {
-            Debug.Log("ventana naranja.");
-            NoContent();
-            contenido_naranja.style.display = DisplayStyle.Flex;
-        });*/
+       
+    }
+    private void ChangeEffectDoor(ClickEvent cev, int n) 
+    {
+        health.addHealth(n);
+        comprobaciones();
     }
 }
