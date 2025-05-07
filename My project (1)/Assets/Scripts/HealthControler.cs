@@ -16,6 +16,8 @@ public class HealthControler : MonoBehaviour
     VisualElement puerta3;
     VisualElement startmenu;
     VisualElement gamezone;
+    VisualElement WinZone;
+    VisualElement LooseZone;
     int nSala=0;
     Label lblSala;
     //3 nu meros 1 para cada boton para saber que evento tienen.
@@ -52,17 +54,21 @@ public class HealthControler : MonoBehaviour
     }
     void comprobaciones() 
     {
-        if (health.getHealth() > 0&&nSala<7)
+        if (health.getHealth() > 0&&nSala<10)
         {  
             nSala++;
         }
         else if(health.getHealth() <= 0 )
         {
             Debug.Log("Perdiste");
+            ResetAll();
+            Loose();
         }
         else 
         {
             Debug.Log("ganaste");
+            ResetAll();
+            Win();
         }
         lblSala.text = "Sala " + nSala;
         ResetButtons();
@@ -119,6 +125,11 @@ public class HealthControler : MonoBehaviour
         SetEvent(ref puerta2, door2);
         SetEvent(ref puerta3, door3);
     }
+    private void ResetAll() 
+    {
+    nSala= 0;
+    health.setHealth(2);
+    }
     void SetEvent(ref VisualElement e, int n)
     {
         e.RegisterCallback<ClickEvent,int>(ChangeEffectDoor,n);
@@ -129,6 +140,7 @@ public class HealthControler : MonoBehaviour
         VisualElement rootve = uidoc.rootVisualElement;
         gamezone = rootve.Q("GameZone");
        
+        VisualElement top = gamezone.Q("Top");
         VisualElement bot = gamezone.Q("Bot");
         VisualElement mid = gamezone.Q("Mid");
         //Label texto = rootve.Q<Label>("Title");
@@ -140,12 +152,19 @@ public class HealthControler : MonoBehaviour
         SetDoorEffects();
         lblSala.text = "Sala " + nSala;
         startmenu= rootve.Q("startzone");
+        LooseZone = rootve.Q("LostZone");
+        WinZone = rootve.Q("WinZone");
         VisualElement botpart = startmenu.Q("BotPart");
-        Button button = (Button)botpart.Q("Start");
-        button.RegisterCallback<ClickEvent>(StartGame);
-        gamezone.style.display = DisplayStyle.None;
-
-
+        Button Backbutton = (Button)top.Q("BackButton");
+        Button Sbutton = (Button)botpart.Q("Start");
+        Button Wbutton = (Button)WinZone.Q("WinBack");
+        Button Lbutton = (Button)LooseZone.Q("LostBack");
+        Sbutton.RegisterCallback<ClickEvent>(StartGame);
+        Backbutton.RegisterCallback<ClickEvent>(GoBack);
+        Wbutton.RegisterCallback<ClickEvent>(GoBack);
+        Lbutton.RegisterCallback<ClickEvent>(GoBack);
+        AllNotVisible();
+        startmenu.style.display = DisplayStyle.Flex;
     }
     private void ChangeEffectDoor(ClickEvent cev, int n) 
     {
@@ -154,7 +173,30 @@ public class HealthControler : MonoBehaviour
     }
     private void StartGame(ClickEvent cev) 
     {
+        AllNotVisible();
     gamezone.style.display = DisplayStyle.Flex;
-    startmenu.style.display = DisplayStyle.None;
+    
+    }
+    private void AllNotVisible() 
+    {
+        gamezone.style.display = DisplayStyle.None;
+        startmenu.style.display = DisplayStyle.None;
+        WinZone.style.display = DisplayStyle.None;
+        LooseZone.style.display = DisplayStyle.None;
+    }
+    private void GoBack(ClickEvent cev) 
+    {
+        AllNotVisible();
+        startmenu.style.display = DisplayStyle.Flex;
+    }
+    private void Win() 
+    {
+        AllNotVisible();
+        WinZone.style.display = DisplayStyle.Flex;
+    }
+    private void Loose() 
+    {
+        AllNotVisible();
+        LooseZone.style.display=DisplayStyle.Flex;
     }
 }

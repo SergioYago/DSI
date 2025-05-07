@@ -2,14 +2,16 @@
     <engine:VisualElement name="Global" style="flex-grow: 1; justify-content: flex-start; background-color: rgb(136, 201, 102);">
         <engine:Label text="Passing The Irregular Dungeon" name="Title" style="font-size: 75px; -unity-font-style: bold; color: rgb(255, 255, 255);" />
         <engine:VisualElement name="GameZone" style="flex-grow: 1; background-color: rgba(81, 178, 59, 0);">
-            <engine:VisualElement name="Top" style="flex-grow: 1; justify-content: space-between; height: 25%;" />
-            <engine:VisualElement name="Mid" style="flex-grow: 1; height: 40%; flex-direction: row;">
+            <engine:VisualElement name="Top" style="flex-grow: 1; justify-content: space-around; height: 25%; flex-direction: row;">
+                <engine:Button text="Back" name="BackButton" style="width: 40%; height: 100%; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; background-color: rgb(76, 225, 196); border-top-color: rgb(76, 104, 53); border-left-color: rgb(112, 64, 64); border-bottom-color: rgb(86, 54, 115); border-right-color: rgb(24, 111, 107); font-size: 40px; -unity-font-style: bold;" />
+            </engine:VisualElement>
+            <engine:VisualElement name="Mid" focusable="false" style="flex-grow: 1; height: 40%; flex-direction: row;">
                 <engine:VisualElement name="Door1" style="flex-grow: 1; background-image: resource(&apos;door&apos;);" />
                 <engine:VisualElement name="Door2" style="flex-grow: 1; background-image: resource(&apos;door&apos;);" />
                 <engine:VisualElement name="Door3" style="flex-grow: 1; background-image: resource(&apos;door&apos;);" />
             </engine:VisualElement>
             <engine:VisualElement name="Bot" style="flex-grow: 1; height: 40%;">
-                <Lab4_2 name="Script" style="flex-direction: row;" />
+                <Lab4_2 name="Script" estado="2" style="flex-direction: row;" />
                 <engine:Label text="HolaqueHace" name="NumberRoom" style="height: 40%; font-size: 60px;" />
             </engine:VisualElement>
         </engine:VisualElement>
@@ -18,6 +20,14 @@
             <engine:VisualElement name="BotPart" style="flex-grow: 1; flex-direction: row; justify-content: center;">
                 <engine:Button text="START" name="Start" style="width: 40%; height: 70%; font-size: 40px; background-color: rgba(218, 120, 120, 0.95); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0); border-left-color: rgb(44, 96, 71); border-right-color: rgb(106, 40, 75); border-top-color: rgb(106, 93, 64); border-bottom-color: rgb(50, 41, 101); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px;" />
             </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:VisualElement name="LostZone" style="flex-grow: 1; flex-direction: column; justify-content: space-between; align-items: center;">
+            <engine:Label text="Lost" style="font-size: 40px; -unity-font-style: bold; -unity-text-align: upper-center;" />
+            <engine:Button text="Back" name="LostBack" style="width: 40%; height: 40%; font-size: 40px; -unity-font-style: bold; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); background-color: rgb(191, 175, 97);" />
+        </engine:VisualElement>
+        <engine:VisualElement name="WinZone" style="flex-grow: 1; flex-direction: column; align-items: center; justify-content: space-around;">
+            <engine:Label text="YOU WON" style="font-size: 40px; -unity-font-style: bold; -unity-text-align: upper-center;" />
+            <engine:Button text="Back" name="WinBack" style="width: 40%; height: 40%; font-size: 40px; -unity-font-style: bold; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); background-color: rgb(191, 175, 97);" />
         </engine:VisualElement>
     </engine:VisualElement>
 </engine:UXML>
