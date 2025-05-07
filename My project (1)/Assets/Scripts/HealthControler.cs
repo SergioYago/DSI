@@ -141,7 +141,8 @@ public class HealthControler : MonoBehaviour
         lblSala.text = "Sala " + nSala;
         startmenu= rootve.Q("startzone");
         VisualElement botpart = startmenu.Q("BotPart");
-
+        Button button = (Button)botpart.Q("Start");
+        button.RegisterCallback<ClickEvent>(StartGame);
         gamezone.style.display = DisplayStyle.None;
 
 
@@ -150,5 +151,10 @@ public class HealthControler : MonoBehaviour
     {
         health.addHealth(n);
         comprobaciones();
+    }
+    private void StartGame(ClickEvent cev) 
+    {
+    gamezone.style.display = DisplayStyle.Flex;
+    startmenu.style.display = DisplayStyle.None;
     }
 }
