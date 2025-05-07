@@ -14,7 +14,10 @@ public class HealthControler : MonoBehaviour
     VisualElement puerta1;
     VisualElement puerta2;
     VisualElement puerta3;
-    int nSala;
+    VisualElement startmenu;
+    VisualElement gamezone;
+    int nSala=0;
+    Label lblSala;
     //3 nu meros 1 para cada boton para saber que evento tienen.
     //si es 1 es sumar vida, si es 0 no tiene nada y si es -1 resta vida
     int door1;
@@ -49,19 +52,19 @@ public class HealthControler : MonoBehaviour
     }
     void comprobaciones() 
     {
-        if (health.getHealth() > 0&&nSala<5)
-        {
-            
+        if (health.getHealth() > 0&&nSala<7)
+        {  
             nSala++;
         }
-        else if(health.getHealth() < 0 )
+        else if(health.getHealth() <= 0 )
         {
             Debug.Log("Perdiste");
         }
         else 
         {
-            Debug.Log("ganeste");
+            Debug.Log("ganaste");
         }
+        lblSala.text = "Sala " + nSala;
         ResetButtons();
     }
     //puede haber 5 casos distintos
@@ -122,22 +125,26 @@ public class HealthControler : MonoBehaviour
     }
     private void OnEnable()
     {
-        nSala = 1;
         UIDocument uidoc = GetComponent<UIDocument>();
         VisualElement rootve = uidoc.rootVisualElement;
-        VisualElement bot = rootve.Q("Bot");
-        VisualElement mid = rootve.Q("Mid");
+        gamezone = rootve.Q("GameZone");
+       
+        VisualElement bot = gamezone.Q("Bot");
+        VisualElement mid = gamezone.Q("Mid");
         //Label texto = rootve.Q<Label>("Title");
         health =(Lab4_2)bot.Q("Script");
-
+        lblSala = (Label)bot.Q("NumberRoom");
         puerta1 = mid.Q("Door1");
         puerta2 = mid.Q("Door2");
         puerta3 = mid.Q("Door3");
-        Debug.Log(puerta1);
         SetDoorEffects();
-       
-        
-       
+        lblSala.text = "Sala " + nSala;
+        startmenu= rootve.Q("startzone");
+        VisualElement botpart = startmenu.Q("BotPart");
+
+        gamezone.style.display = DisplayStyle.None;
+
+
     }
     private void ChangeEffectDoor(ClickEvent cev, int n) 
     {

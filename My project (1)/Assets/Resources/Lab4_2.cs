@@ -13,6 +13,7 @@ public class Lab4_2 : VisualElement
     VisualElement Health1 = new VisualElement();
     VisualElement Health2 = new VisualElement();
     VisualElement Health3 = new VisualElement();
+    VisualElement Health4 = new VisualElement();
     private  int estado=1;
     public int Estado
     {
@@ -29,11 +30,10 @@ public class Lab4_2 : VisualElement
     public int getHealth() { return estado; }
     public void addHealth(int i)
     {
-        estado += i; changeEstado(); if (estado > 4) { estado = 4; }
-        if (estado < 0)
-        {
-            estado = 0; 
-        }
+        estado += i;  
+        if (estado > 5) { estado = 5; }
+        if (estado < 0){estado = 0;}
+        changeEstado();
         Debug.Log(estado);
     }
     void changeEstado() 
@@ -43,10 +43,12 @@ public class Lab4_2 : VisualElement
         Health1.style.backgroundImage = new StyleBackground(spr);
         Health2.style.backgroundImage = new StyleBackground(spr);
         Health3.style.backgroundImage = new StyleBackground(spr);
+        Health4.style.backgroundImage = new StyleBackground(spr);
         Health.style.unityBackgroundImageTintColor = new Color(1.0f, 1f, 1f, 0.5f);
         Health1.style.unityBackgroundImageTintColor = new Color(1.0f, 1f, 1f, 0.5f);
         Health2.style.unityBackgroundImageTintColor = new Color(1.0f, 1f, 1f, 0.5f);
         Health3.style.unityBackgroundImageTintColor = new Color(1.0f, 1f, 1f, 0.5f);
+        Health4.style.unityBackgroundImageTintColor = new Color(1.0f, 1f, 1f, 0.5f);
         
         if (estado >= 1)
         {
@@ -60,9 +62,13 @@ public class Lab4_2 : VisualElement
         {
             Health2.style.unityBackgroundImageTintColor = Color.white;
         }
-        if (estado == 4)
+        if (estado >= 4)
         {
             Health3.style.unityBackgroundImageTintColor = Color.white;
+        }
+        if (estado >= 5)
+        {
+            Health4.style.unityBackgroundImageTintColor = Color.white;
         }
     }
     public new class UxmlFactory : UxmlFactory<Lab4_2,UxmlTraits> { };
@@ -86,11 +92,14 @@ public class Lab4_2 : VisualElement
         Health2.style.height = 100;
         Health3.style.width = 100;
         Health3.style.height = 100;
+        Health4.style.height = 100;
+        Health4.style.width = 100;
         Health1.style.width = 100;
         Health1.style.height = 100;
         hierarchy.Add(Health);
         hierarchy.Add(Health1);
         hierarchy.Add(Health2);
         hierarchy.Add(Health3);
+        hierarchy.Add(Health4);
     }
 }
