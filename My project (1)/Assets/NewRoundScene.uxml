@@ -7,9 +7,9 @@
                 <engine:Button text="Back" name="BackButton" style="width: 40%; height: 100%; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; background-color: rgb(76, 225, 196); border-top-color: rgb(76, 104, 53); border-left-color: rgb(112, 64, 64); border-bottom-color: rgb(86, 54, 115); border-right-color: rgb(24, 111, 107); font-size: 40px; -unity-font-style: bold;" />
             </engine:VisualElement>
             <engine:VisualElement name="Mid" focusable="false" style="flex-grow: 1; height: 40%; flex-direction: row;">
-                <engine:VisualElement name="Door1" class="NormalButton" style="flex-grow: 1; background-image: resource(&apos;door&apos;);" />
-                <engine:VisualElement name="Door2" class="NormalButton" style="flex-grow: 1; background-image: resource(&apos;door&apos;);" />
-                <engine:VisualElement name="Door3" class="NormalButton" style="flex-grow: 1; background-image: resource(&apos;door&apos;);" />
+                <engine:VisualElement name="Door1" class="NormalButton" style="flex-grow: 1; background-image: resource(&apos;door&apos;); width: 33.4%;" />
+                <engine:VisualElement name="Door2" class="NormalButton" style="flex-grow: 1; background-image: resource(&apos;door&apos;); width: 33.3%;" />
+                <engine:VisualElement name="Door3" class="NormalButton" style="flex-grow: 1; background-image: resource(&apos;door&apos;); width: 33.3%;" />
             </engine:VisualElement>
             <engine:VisualElement name="Bot" style="flex-grow: 1; height: 40%;">
                 <Lab4_2 name="Script" estado="2" style="flex-direction: row;" />
