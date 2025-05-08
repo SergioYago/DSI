@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml.Serialization;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -57,6 +59,7 @@ public class HealthControler : MonoBehaviour
         if (health.getHealth() > 0&&nSala<10)
         {  
             nSala++;
+            save();
         }
         else if(health.getHealth() <= 0 )
         {
@@ -70,12 +73,21 @@ public class HealthControler : MonoBehaviour
             ResetAll();
             Win();
         }
+        
         lblSala.text = "Sala " + nSala;
         ResetButtons();
     }
     //puede haber 5 casos distintos
     //creamos funcion que saque numero random, cremos funcion que añada el MouseDownEnvent
     //a la funcion se le pasará el visualElement y un número. El número se pondrá en changeHealth 
+    
+    private void save() 
+    {
+        string path = Path.Combine(Application.persistentDataPath, "data.json");
+        Info info = new Info(health.getHealth(),nSala);
+       string inf= JsonUtility.ToJson(info);
+        File.WriteAllText(path, inf);
+    }
     void SetDoorEffects() 
     {
         int rnd =UnityEngine.Random.Range(0,6);
@@ -128,7 +140,9 @@ public class HealthControler : MonoBehaviour
     private void ResetAll() 
     {
     nSala= 0;
-    health.setHealth(2);
+        lblSala.text = "Sala " + nSala;
+        health.setHealth(2);
+    save();
     }
     void SetEvent(ref VisualElement e, int n)
     {
@@ -155,12 +169,15 @@ public class HealthControler : MonoBehaviour
         LooseZone = rootve.Q("LostZone");
         WinZone = rootve.Q("WinZone");
         VisualElement botpart = startmenu.Q("BotPart");
+        VisualElement toppart = startmenu.Q("TopPart");
         Button Backbutton = (Button)top.Q("BackButton");
         Button Sbutton = (Button)botpart.Q("Start");
+        Button Loadbutton = (Button)toppart.Q("Load");
         Button Wbutton = (Button)WinZone.Q("WinBack");
         Button Lbutton = (Button)LooseZone.Q("LostBack");
         Sbutton.RegisterCallback<ClickEvent>(StartGame);
         Backbutton.RegisterCallback<ClickEvent>(GoBack);
+        Loadbutton.RegisterCallback<ClickEvent>(Load);
         Wbutton.RegisterCallback<ClickEvent>(GoBack);
         Lbutton.RegisterCallback<ClickEvent>(GoBack);
         AllNotVisible();
@@ -173,7 +190,8 @@ public class HealthControler : MonoBehaviour
     }
     private void StartGame(ClickEvent cev) 
     {
-        AllNotVisible();
+    ResetAll();
+    AllNotVisible();
     gamezone.style.display = DisplayStyle.Flex;
     
     }
@@ -198,5 +216,19 @@ public class HealthControler : MonoBehaviour
     {
         AllNotVisible();
         LooseZone.style.display=DisplayStyle.Flex;
+    }
+    private void Load(ClickEvent cev)
+    {
+        string path = Path.Combine(Application.persistentDataPath, "data.json");
+        string intermedio = File.ReadAllText(path);
+        if (intermedio != "")
+        {
+            Info info = JsonUtility.FromJson<Info>(intermedio);
+            health.setHealth(info.vida);
+            nSala = info.sala;
+        }
+        lblSala.text = "Sala " + nSala;
+        AllNotVisible() ;
+        gamezone.style.display = DisplayStyle.Flex;
     }
 }
