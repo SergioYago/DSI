@@ -63,13 +63,11 @@ public class HealthControler : MonoBehaviour
         }
         else if(health.getHealth() <= 0 )
         {
-            Debug.Log("Perdiste");
             ResetAll();
             Loose();
         }
         else 
         {
-            Debug.Log("ganaste");
             ResetAll();
             Win();
         }
