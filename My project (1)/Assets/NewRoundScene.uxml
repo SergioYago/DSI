@@ -1,4 +1,5 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/StyleSheet.uss?fileID=7433441132597879392&amp;guid=bb2f879353cd58447952faecf636c68b&amp;type=3#StyleSheet" />
     <engine:VisualElement name="Global" style="flex-grow: 1; justify-content: flex-start; background-color: rgb(136, 201, 102);">
         <engine:Label text="Passing The Irregular Dungeon" name="Title" style="font-size: 75px; -unity-font-style: bold; color: rgb(255, 255, 255);" />
         <engine:VisualElement name="GameZone" style="flex-grow: 1; background-color: rgba(81, 178, 59, 0);">
@@ -6,9 +7,9 @@
                 <engine:Button text="Back" name="BackButton" style="width: 40%; height: 100%; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; background-color: rgb(76, 225, 196); border-top-color: rgb(76, 104, 53); border-left-color: rgb(112, 64, 64); border-bottom-color: rgb(86, 54, 115); border-right-color: rgb(24, 111, 107); font-size: 40px; -unity-font-style: bold;" />
             </engine:VisualElement>
             <engine:VisualElement name="Mid" focusable="false" style="flex-grow: 1; height: 40%; flex-direction: row;">
-                <engine:VisualElement name="Door1" style="flex-grow: 1; background-image: resource(&apos;door&apos;);" />
-                <engine:VisualElement name="Door2" style="flex-grow: 1; background-image: resource(&apos;door&apos;);" />
-                <engine:VisualElement name="Door3" style="flex-grow: 1; background-image: resource(&apos;door&apos;);" />
+                <engine:VisualElement name="Door1" class="NormalButton" style="flex-grow: 1; background-image: resource(&apos;door&apos;);" />
+                <engine:VisualElement name="Door2" class="NormalButton" style="flex-grow: 1; background-image: resource(&apos;door&apos;);" />
+                <engine:VisualElement name="Door3" class="NormalButton" style="flex-grow: 1; background-image: resource(&apos;door&apos;);" />
             </engine:VisualElement>
             <engine:VisualElement name="Bot" style="flex-grow: 1; height: 40%;">
                 <Lab4_2 name="Script" estado="2" style="flex-direction: row;" />
@@ -17,10 +18,10 @@
         </engine:VisualElement>
         <engine:VisualElement name="startzone" style="flex-grow: 1;">
             <engine:VisualElement name="TopPart" style="flex-grow: 1; flex-direction: row; justify-content: center; align-items: center; height: 50%;">
-                <engine:Button text="LOAD" name="Load" style="height: 100%; width: 40%; background-color: rgb(210, 120, 120); border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); -unity-font-style: bold; font-size: 40px;" />
+                <engine:Button text="LOAD" name="Load" style="height: 50%; width: 40%; background-color: rgb(210, 120, 120); border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); -unity-font-style: bold; font-size: 40px;" />
             </engine:VisualElement>
             <engine:VisualElement name="BotPart" style="flex-grow: 1; flex-direction: row; justify-content: center; height: 50%;">
-                <engine:Button text="START" name="Start" style="width: 40%; height: 100%; font-size: 40px; background-color: rgba(218, 120, 120, 0.95); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0); border-left-color: rgb(44, 96, 71); border-right-color: rgb(106, 40, 75); border-top-color: rgb(106, 93, 64); border-bottom-color: rgb(50, 41, 101); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px;" />
+                <engine:Button text="START" name="Start" style="width: 40%; height: 50%; font-size: 40px; background-color: rgba(218, 120, 120, 0.95); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0); border-left-color: rgb(44, 96, 71); border-right-color: rgb(106, 40, 75); border-top-color: rgb(106, 93, 64); border-bottom-color: rgb(50, 41, 101); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px;" />
             </engine:VisualElement>
         </engine:VisualElement>
         <engine:VisualElement name="LostZone" style="flex-grow: 1; flex-direction: column; justify-content: space-between; align-items: center;">
